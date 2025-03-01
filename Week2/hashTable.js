@@ -21,7 +21,7 @@ class hashTable{
         }else{
             const sameKeyItem= bucket.find(item=>item[0]===key)
             if(sameKeyItem){
-                sameKeyItem[1] = value
+                sameKeyItem[1] = value      
             }else{
                 bucket.push([key,value])
             }

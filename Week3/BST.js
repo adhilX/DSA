@@ -120,6 +120,8 @@ class BST {
                 return null
             } else if (!root.right) {
                 return root.left
+            } else if (!root.left) {
+                return root.right
             } else {
                 root.value = this.min(root.right)
                 root.right = this.deleteNode(root.right, root.value)
@@ -130,6 +132,19 @@ class BST {
     getHeight(root = this.root) {
         if (root === null) return 0;
         return Math.max(this.getHeight(root.left), this.getHeight(root.right)) + 1;
+    }
+
+
+    valideBST(node= this.root , min= -Infinity , max = Infinity){
+        if(node === null){
+            return true
+        } 
+
+        if(node.value <= min || node.value >= max){
+            return false
+        }
+        return this.valideBST(node.left, min , node.value) && this.valideBST(node.right , node.value , max)
+
     }
 }
 
@@ -142,6 +157,7 @@ tree.insert(4)
 tree.insert(7);
 tree.insert(9);
 tree.insert(1);
+tree.delete(7)
 tree.postOrder(tree.root)
 console.log(tree.search(tree.root, 7))
 tree.levelOrder()

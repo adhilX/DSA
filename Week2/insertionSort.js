@@ -12,6 +12,5 @@ function insertionSort(arr) {
     return arr;
 }
 
-// Example usage:
 const array = [12, 11, 13, 5, 6];
 console.log("Sorted array:", insertionSort(array));

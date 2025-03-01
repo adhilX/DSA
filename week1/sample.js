@@ -144,7 +144,6 @@
 //   }
 // }
 
-
 // class singlyLinkedList{
 //   constructor(){
 //     this.head= null
@@ -171,7 +170,6 @@
 
 //   }temp.next= newNode
 // }
-
 
 // //delete a node by value
 

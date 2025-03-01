@@ -8,7 +8,7 @@ class MaxHeap{
     }
     leftChild(i){
         return i *2+1
-    }
+    }   
     rightchild(i){
         return i*2+2
     }

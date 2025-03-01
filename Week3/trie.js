@@ -40,25 +40,28 @@ class Trie {
         return node; // Return the final node after traversing the string
     }
 
-    autocomplete(prefix) {
-        const result = [];
-        const node = this.traverse(prefix);
-        
-        if (node) {
-            this.findWords(node, prefix, result); // Find all words starting with the given prefix
+      // Find suggestions based on a prefix
+      autocomplete(prefix) {
+        let node = this.root;
+        for (let char of prefix) {
+            if (!node.children[char]) return []; // If prefix not found, return empty array
+            node = node.children[char];
         }
-        return result; // Return the list of words
+        return this.findWords(node, prefix);
     }
 
-    findWords(node, word, result) {
-        if (node.isEnd) {
-            result.push(word); // Add the word to the result if it's marked as end
-        }
+    // Helper function to collect words from a given node
+    findWords(node, prefix) {
+        let words = [];
+        if (node.isEnd) words.push(prefix);
 
         for (let char in node.children) {
-            this.findWords(node.children[char], word + char, result); // Recursively find all words
+            words.push(...this.findWords(node.children[char], prefix + char));
         }
+        return words;
     }
+
+    
 
     remove(word) {
         function removeWordHelper(node, word, depth) {
