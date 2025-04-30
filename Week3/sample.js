@@ -1901,63 +1901,109 @@ const nodemon = require("nodemon")
 // console.log(bst.search(82))
 // bst.levelorder(bst.root)
 
-class TrieNode {
-    constructor(){
-        this.child = {}
-        this.isEnd = false
-    }
-}
+// class TrieNode {
+//     constructor(){
+//         this.child = {}
+//         this.isEnd = false
+//     }
+// }
 
-class Trie {
-    constructor () {
-        this.root = new TrieNode()
-    }
+// class Trie {
+//     constructor () {
+//         this.root = new TrieNode()
+//     }
 
-    insert(word){
-        let node = this.root
-        for (const char of word) {
-            if(!node.child[char]){
-                node.child[char]= new TrieNode()
-            }
-            node = node.child[char]
-        }
-        node.isEnd= true
-    }
+//     insert(word){
+//         let node = this.root
+//         for (const char of word) {
+//             if(!node.child[char]){
+//                 node.child[char]= new TrieNode()
+//             }
+//             node = node.child[char]
+//         }
+//         node.isEnd= true
+//     }
 
 
-    serach(word){
-        let node =  this.root
-        for (const char of word) {
-            if(!node.child[char]){
-                return false
-            }
-            node = node.child[char]
-        }
-        return node? node.isEnd : false
-    }
+//     serach(word){
+//         let node =  this.root
+//         for (const char of word) {
+//             if(!node.child[char]){
+//                 return false
+//             }
+//             node = node.child[char]
+//         }
+//         return node? node.isEnd : false
+//     }
 
-    autocomplete(prifix){
-        let node = this.root
-        for (const char of prifix) {
-            if(!node.child[char])return []
-            node= node.child[char]
-        }
-       return  this.findWord(node , prifix)
-    }
+//     autocomplete(prifix){
+//         let node = this.root
+//         for (const char of prifix) {
+//             if(!node.child[char])return []
+//             node= node.child[char]
+//         }
+//        return  this.findWord(node , prifix)
+//     }
 
-    findWord(node, prifix){
-        let result = []
-        if(node.isEnd)result.push(prifix)
+//     findWord(node, prifix){
+//         let result = []
+//         if(node.isEnd)result.push(prifix)
 
-            for (const key in node.child) {
-                result.push(...this.findWord(node.child[key],prifix+ key))
-                }
-                return result
-            }
-    }
+//             for (const key in node.child) {
+//                 result.push(...this.findWord(node.child[key],prifix+ key))
+//                 }
+//                 return result
+//             }
+//     }
 
-let trie = new Trie()
-trie.insert('adhi')
-trie.insert('adhil')
-console.log(trie.serach('adhi'))
-console.log(trie.autocomplete('ad'))
+// let trie = new Trie()
+// trie.insert('adhi')
+// trie.insert('adhil')
+// console.log(trie.serach('adhi'))
+// console.log(trie.autocomplete('ad'))
+
+
+// class Graph {
+//     constructor() {
+//         this.graph = {}
+//     }
+
+//     addVertex(vertex){
+//         if(!this.graph[vertex]){
+//             this.graph[vertex] = []
+//         }
+//     }
+//     addEdge(vertex1,vertex2){
+//         !this.graph[vertex1] && this.addVertex(vertex1)
+//         !this.graph[vertex2] && this.addVertex(vertex2)
+
+//         this.graph[vertex1].push(vertex2)
+//         this.graph[vertex2].push(vertex1)
+//     }
+
+//     print(){
+//         console.log(this.graph)
+//     }
+
+//     DFS(start){
+//         let stack = [start]
+//         let visited = new Set()
+//   while(stack.length){
+//         let cur = stack.pop()
+
+//         if(!visited.has(cur)){
+//             visited.add(cur)
+//             console.log(cur)
+//             stack.push(...this.graph[cur].filter(v=> !visited.has(v)))
+//         }
+//   }
+
+//     }
+// }
+
+// let graph = new Graph()
+// graph.addVertex('g')
+// graph.addVertex('w')
+// graph.addEdge('g','e')
+// graph.addEdge('w','g')
+// graph.DFS('w')
